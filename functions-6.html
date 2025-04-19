@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculator</title>
+</head>
+<body>
+  <script>
+    // Step 1: Create a function that returns a calculator object
+    function createCalculator() {
+      return {
+        add: function(a, b) {
+          return a + b;
+        },
+        subtract: function(a, b) {
+          return a - b;
+        },
+        multiply: function(a, b) {
+          return a * b;
+        },
+        divide: function(a, b) {
+          if (b === 0) {
+            return "Cannot divide by zero";
+          }
+          return a / b;
+        }
+      };
+    }
+
+    // Step 2: Use the calculator
+    const calculator = createCalculator(); // create a calculator object
+
+    // Step 3: Call the methods
+    console.log("Addition:", calculator.add(10, 5));        // 15
+    console.log("Subtraction:", calculator.subtract(10, 5)); // 5
+    console.log("Multiplication:", calculator.multiply(10, 5)); // 50
+    console.log("Division:", calculator.divide(10, 5));      // 2
+  </script>
+</body>
+</html>

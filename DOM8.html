@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Manipulation</title>
+</head>
+<body>
+
+  <div id="container">
+    <h1>My List</h1>
+    <ul id="myList">
+      <li class="item">Item 1</li>
+      <li class="item">Item 2</li>
+      <li class="item">Item 3</li>
+    </ul>
+    <button id="addButton">Add Item</button>
+  </div>
+
+  <script>
+    // Step 1: Get references to the elements
+    const addButton = document.getElementById("addButton");
+    const myList = document.getElementById("myList");
+
+    // Step 2: Add a new list item when the "Add Item" button is clicked
+    addButton.addEventListener("click", function() {
+      const newItem = document.createElement("li"); // Create a new list item
+      newItem.textContent = "New Item"; // Set the text of the new item
+      newItem.classList.add("item"); // Add the 'item' class to the new item
+      myList.appendChild(newItem); // Append the new item to the list
+    });
+
+    // Step 3: Remove a list item when it is clicked
+    myList.addEventListener("click", function(event) {
+      if (event.target && event.target.matches("li.item")) { // Check if the clicked element is a list item
+        event.target.remove(); // Remove the clicked item
+      }
+    });
+  </script>
+
+</body>
+</html>

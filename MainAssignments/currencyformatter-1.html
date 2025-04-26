@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Currency Formatter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background: burlywood;
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+    }
+    .output {
+      margin-top: 20px;
+      font-size: 24px;
+      color: black;
+      font-weight: bold;
+    }
+    
+  </style>
+</head>
+<body>
+
+  <h1>💰 Currency Formatter</h1>
+  
+  <input type="number" id="amount" placeholder="Enter amount" />
+  <br>
+
+  <button onclick="formatCurrency('USD')">Format as USD</button>
+  <button onclick="formatCurrency('INR')">Format as INR</button>
+  <button onclick="formatCurrency('EUR')">Format as EUR</button>
+  <button onclick="formatCurrency('JPY')">Format as JPY</button>
+
+  <div class="output" id="result"></div>
+
+  <script>
+    function formatCurrency(currencyCode) {
+      const amount = parseFloat(document.getElementById("amount").value);
+      if (isNaN(amount)) {
+        document.getElementById("result").textContent = "Please enter a valid number.";
+        return;
+      }
+
+      const currencyLocales = {
+        USD: 'en-US',
+        INR: 'en-IN',
+        EUR: 'de-DE',
+        JPY: 'ja-JP'
+      };
+
+      const locale = currencyLocales[currencyCode] || 'en-US';
+
+      const formatter = new Intl.NumberFormat(locale, {
+        style: 'currency',
+        currency: currencyCode,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      });
+
+      const formatted = formatter.format(amount);
+      document.getElementById("result").textContent = `Formatted: ${formatted}`;
+    }
+  </script>
+
+</body>
+</html>

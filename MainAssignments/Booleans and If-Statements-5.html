@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Booleans and If-Statements</title>
+</head>
+<body>
+  <h1>evaluateConditions(obj) - JavaScript Booleans &amp; If-Statements</h1>
+
+  <p>Open the browser console to see the results.</p>
+
+  <script>
+    function evaluateConditions(obj) {
+      // Condition 1
+      if (obj.age > 18 && obj.hasLicense) {
+        return "Eligible to drive";
+      }
+
+      // Condition 2
+      if (obj.temperature > 30 || obj.humidity > 70) {
+        return "Warning: High discomfort level";
+      }
+
+      // Condition 3
+      if ((obj.role === "admin" || obj.role === "editor") && obj.isActive) {
+        return "Access granted";
+      }
+
+      // Condition 4
+      if (!(obj.isOnline) && obj.lastLoginDays > 7) {
+        return "User is inactive";
+      }
+
+      // Condition 5
+      if ((obj.score >= 90 && obj.rank === 1) || obj.awardWinner) {
+        return "Top performer";
+      }
+
+      // Condition 6
+      if (obj.subscription === "premium" && !obj.hasOverduePayment) {
+        return "Premium access active";
+      }
+
+      // Condition 7
+      if ((obj.country === "India" || obj.country === "USA") && obj.language === "English") {
+        return "Preferred region user";
+      }
+
+      return "No specific condition met";
+    }
+
+    // Test objects
+    const testCases = [
+      { age: 20, hasLicense: true },
+      { temperature: 32, humidity: 60 },
+      { role: "editor", isActive: true },
+      { isOnline: false, lastLoginDays: 10 },
+      { score: 95, rank: 1, awardWinner: false },
+      { subscription: "premium", hasOverduePayment: false },
+      { country: "India", language: "English" },
+      { age: 16, hasLicense: false }
+    ];
+
+    // Run tests and log results
+    testCases.forEach((obj, index) => {
+      console.log(`Test Case ${index + 1}:`, evaluateConditions(obj));
+    });
+  </script>
+</body>
+</html>

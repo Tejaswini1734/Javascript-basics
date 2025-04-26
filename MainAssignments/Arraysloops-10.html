@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Transaction Processor</title>
+</head>
+<body>
+
+  <h2>Open console to see transaction result</h2>
+
+  <script>
+    function processTransactions(transactions) {
+      let finalBalance = 0;
+      let totalDeposits = 0;
+      let totalWithdrawals = 0;
+
+      for (let tx of transactions) {
+        if (tx.type === 'deposit') {
+          finalBalance += tx.amount;
+          totalDeposits += tx.amount;
+        } else if (tx.type === 'withdrawal') {
+          finalBalance -= tx.amount;
+          totalWithdrawals += tx.amount;
+        }
+      }
+
+      return {
+        finalBalance,
+        totalDeposits,
+        totalWithdrawals
+      };
+    }
+
+    // Example test data
+    const transactions = [
+      { type: 'deposit', amount: 500 },
+      { type: 'withdrawal', amount: 100 },
+      { type: 'deposit', amount: 300 },
+      { type: 'withdrawal', amount: 50 }
+    ];
+
+    // Run function and log result
+    const result = processTransactions(transactions);
+    console.log("Transaction Summary:", result);
+  </script>
+
+</body>
+</html>

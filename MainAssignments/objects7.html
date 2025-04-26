@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Library System</title>
+</head>
+<body>
+
+  <h2>Open the console to interact with the library system</h2>
+
+  <script>
+    // Book class definition
+    class Book {
+      constructor(title, author, ISBN) {
+        this.title = title;
+        this.author = author;
+        this.ISBN = ISBN;
+        this.isBorrowed = false;
+      }
+
+      borrow() {
+        this.isBorrowed = true;
+      }
+
+      returnBook() {
+        this.isBorrowed = false;
+      }
+    }
+
+    // Library class definition
+    class Library {
+      constructor() {
+        this.books = [];
+      }
+
+      addBook(book) {
+        this.books.push(book);
+      }
+
+      findBookByISBN(isbn) {
+        return this.books.find(book => book.ISBN === isbn);
+      }
+
+      listAvailableBooks() {
+        return this.books.filter(book => !book.isBorrowed);
+      }
+
+      listBorrowedBooks() {
+        return this.books.filter(book => book.isBorrowed);
+      }
+    }
+
+    // Example usage
+    const library = new Library();
+
+    const book1 = new Book("Harry Potter", "J.K. Rowling", "12345");
+    const book2 = new Book("The Hobbit", "J.R.R. Tolkien", "54321");
+    const book3 = new Book("1984", "George Orwell", "67890");
+
+    library.addBook(book1);
+    library.addBook(book2);
+    library.addBook(book3);
+
+    // Borrow a book
+    const foundBook = library.findBookByISBN("54321");
+    if (foundBook) {
+      foundBook.borrow();
+    }
+
+    // Log results
+    console.log("All Books:", library.books);
+    console.log("Available Books:", library.listAvailableBooks());
+    console.log("Borrowed Books:", library.listBorrowedBooks());
+
+    // Return the borrowed book
+    if (foundBook) {
+      foundBook.returnBook();
+    }
+
+    console.log("After returning the book:");
+    console.log("Available Books:", library.listAvailableBooks());
+    console.log("Borrowed Books:", library.listBorrowedBooks());
+
+  </script>
+
+</body>
+</html>

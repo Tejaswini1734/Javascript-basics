@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Variable Scope Explained</title>
+</head>
+<body>
+  <h1>JavaScript Variable Scope</h1>
+
+  <h2>1. Global Scope</h2>
+  <p><strong>Explanation:</strong> Variables declared outside any function or block are globally scoped. They can be accessed anywhere in the code.</p>
+  <pre><code>
+    var globalVar = "I'm a global variable";
+
+    function accessGlobal() {
+      console.log(globalVar); // ✅ Accessible here
+    }
+
+    accessGlobal();
+    console.log(globalVar);   // ✅ Accessible here too
+  </code></pre>
+
+  <h2>2. Function (Local) Scope</h2>
+  <p><strong>Explanation:</strong> Variables declared inside a function are local to that function and cannot be accessed outside it.</p>
+  <pre><code>
+    function localScopeExample() {
+      var localVar = "I'm a local variable";
+      console.log(localVar); // ✅ Accessible here
+    }
+
+    localScopeExample();
+    // console.log(localVar); // ❌ Error: localVar is not defined
+  </code></pre>
+
+  <h2>3. Block Scope</h2>
+  <p><strong>Explanation:</strong> Variables declared with <code>let</code> and <code>const</code> inside blocks (like if, loops) are block-scoped.</p>
+  <pre><code>
+    if (true) {
+      let blockLet = "I'm block-scoped";
+      const blockConst = "I'm also block-scoped";
+      console.log(blockLet);   // ✅ Accessible inside block
+      console.log(blockConst); // ✅ Accessible inside block
+    }
+
+    // console.log(blockLet);   // ❌ Error
+    // console.log(blockConst); // ❌ Error
+  </code></pre>
+
+  <h2>4. Variable Shadowing</h2>
+  <p><strong>Explanation:</strong> Shadowing occurs when a variable in a local or block scope has the same name as one in the outer scope. The inner one "shadows" the outer.</p>
+  <pre><code>
+    let message = "Outer";
+
+    function shadowExample() {
+      let message = "Inner"; // Shadows the outer message
+      console.log("Inside function:", message); // Outputs: Inner
+    }
+
+    shadowExample();
+    console.log("Outside function:", message); // Outputs: Outer
+  </code></pre>
+
+  <h2>⚠️ Common Issues from Misunderstanding Scope</h2>
+  <ul>
+    <li><strong>Access Errors:</strong> Trying to access a variable outside its scope results in a ReferenceError.</li>
+    <li><strong>Global Pollution:</strong> Declaring variables without <code>let</code>, <code>const</code>, or <code>var</code> can accidentally create global variables.</li>
+    <li><strong>Shadowing Confusion:</strong> It's hard to track which variable is being used if names are reused in different scopes.</li>
+    <li><strong>Using var:</strong> <code>var</code> ignores block scope, which may cause unexpected behavior.</li>
+  </ul>
+
+  <script>
+    // The actual logs for demonstration
+    console.log("1. Global Scope Example:");
+    var globalVar = "I'm a global variable";
+    function accessGlobal() {
+      console.log(globalVar);
+    }
+    accessGlobal();
+    console.log(globalVar);
+
+    console.log("\n2. Function Scope Example:");
+    function localScopeExample() {
+      var localVar = "I'm a local variable";
+      console.log(localVar);
+    }
+    localScopeExample();
+    // console.log(localVar); // Uncommenting this will cause error
+
+    console.log("\n3. Block Scope Example:");
+    if (true) {
+      let blockLet = "I'm block-scoped";
+      const blockConst = "I'm also block-scoped";
+      console.log(blockLet);
+      console.log(blockConst);
+    }
+    // console.log(blockLet);   // Uncommenting this will cause error
+
+    console.log("\n4. Variable Shadowing Example:");
+    let message = "Outer";
+    function shadowExample() {
+      let message = "Inner";
+      console.log("Inside function:", message);
+    }
+    shadowExample();
+    console.log("Outside function:", message);
+  </script>
+</body>
+</html>
